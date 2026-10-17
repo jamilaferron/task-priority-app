@@ -1,24 +1,23 @@
-"""FastAPI app: the five v1 endpoints, plus the built wall screen if present.
+"""FastAPI app: task endpoints, routine/schedule endpoints, and the built wall screen if present.
 
 Run locally:  uvicorn app.main:app --reload
 Interactive docs: http://localhost:8000/docs
 """
 
-import secrets
 from contextlib import asynccontextmanager
 from pathlib import Path
 
-from fastapi import APIRouter, Depends, FastAPI, HTTPException, Security
-from fastapi.security import APIKeyHeader
+from fastapi import APIRouter, Depends, FastAPI, HTTPException
 from fastapi.staticfiles import StaticFiles
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from . import config
 from .ai import AIError
+from .auth import require_api_key
 from .database import Base, engine, get_db
 from .models import Task
 from .ranking import build_board
+from .schedule_api import router as schedule_router
 from .schemas import BoardOut, ClarifyIn, SiriReply, TaskIn, TaskOut, TaskPatch
 from .services import process_task
 from .timeutils import from_storage, to_storage, utcnow
@@ -26,22 +25,11 @@ from .timeutils import from_storage, to_storage, utcnow
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    Base.metadata.create_all(engine)  # creates the tasks table on first run
+    Base.metadata.create_all(engine)  # creates any tables that don't exist yet
     yield
 
 
 app = FastAPI(title="Task Priority API", lifespan=lifespan)
-
-
-api_key_header = APIKeyHeader(name="X-API-Key", auto_error=False)
-
-
-def require_api_key(x_api_key: str | None = Security(api_key_header)) -> None:
-    """Every task endpoint needs the secret key in the X-API-Key header."""
-    if not config.API_KEY:
-        raise HTTPException(500, "API_KEY is not set on the server")
-    if not secrets.compare_digest(x_api_key or "", config.API_KEY):
-        raise HTTPException(401, "Missing or wrong API key")
 
 
 router = APIRouter(prefix="/tasks", dependencies=[Depends(require_api_key)])
@@ -126,6 +114,7 @@ def update_task(task_id: int, body: TaskPatch, db: Session = Depends(get_db)):
 
 
 app.include_router(router)
+app.include_router(schedule_router)
 
 
 @app.get("/health")

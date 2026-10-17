@@ -1,4 +1,4 @@
-# Task Priority App — version 1
+# Task Priority App
 
 Say a task to Siri. An AI pulls out the deadline, how long it takes and how bad it is to miss.
 The code ranks everything by **latest start time**, and a wall screen shows what to start now.
@@ -12,12 +12,17 @@ frontend/   React + TypeScript (the wall screen)
 
 | File | What it does |
 | --- | --- |
-| `backend/app/main.py` | The five endpoints and the API key check |
+| `backend/app/main.py` | The task endpoints |
+| `backend/app/auth.py` | The API key check |
 | `backend/app/ai.py` | The AI prompt, the consequence scale, and response validation |
 | `backend/app/ranking.py` | Buffers and sorting — no AI, just rules |
 | `backend/app/services.py` | Add/clarify logic, including the two-follow-up limit |
-| `backend/app/models.py` | The `tasks` table |
-| `frontend/src/App.tsx` | Screen layout: overdue, start now, up next, needs details, whenever |
+| `backend/app/models.py` | All database tables |
+| `backend/app/schedule.py` | Routine rules: which days, holiday pauses, when checklists appear |
+| `backend/app/schedule_api.py` | Endpoints for routines, events, break calendars and ticks |
+| `frontend/src/App.tsx` | Wall screen: checklist prompt, start now, today's agenda, lists |
+| `frontend/src/Checklists.tsx` | Week-ahead, tomorrow and today checklists |
+| `frontend/src/Manage.tsx` | Phone page for routines, events and break calendars |
 | `frontend/src/TaskCard.tsx` | One task, with Done and Edit |
 
 ## 1. Run the backend
@@ -26,7 +31,7 @@ Needs Python 3.10 or newer.
 
 ```bash
 cd backend
-python -m venv .venv
+python3 -m venv .venv               # on a Mac, use python3 here
 source .venv/bin/activate          # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 cp .env.example .env               # then edit .env
@@ -108,6 +113,31 @@ In the **Shortcuts** app, create a new shortcut called **Add task** (you'll say 
 7. **Speak Text** *Dictionary Value*.
 
 If Siri says nothing at the end, the server probably returned an error. Check the terminal running uvicorn.
+
+## 4. Routines and checklists
+
+Restart the backend after updating; it creates the new tables by itself (your tasks are kept).
+
+**Open the manage page:** http://localhost:5173/#/manage, or tap **Routines** on the screen.
+
+**On your phone:** start the screen with `npm run dev -- --host`, then open `http://<laptop IP>:5173/#/manage` in Safari. Tap **Share → Add to Home Screen** to open it like an app.
+
+**Set up in this order:**
+
+1. **Breaks tab:** add "School holidays" with this year's holiday dates, then a calendar for each club, e.g. "Performing arts breaks".
+2. **Routines tab:** add each routine with its days, time and checklist. Tick the calendars that pause it: school and work routines → School holidays; each club → its own calendar; weekend activities → none.
+3. **Events tab:** one-off things like appointments.
+
+**When checklists appear on the screen:**
+
+| When | What |
+| --- | --- |
+| Sunday | Week-ahead check: every school and work item for the coming week |
+| Monday | The same check again, if not finished on Sunday |
+| From 18:00 | Tomorrow's checklist |
+| Each day | Today's checklist until everything is ticked |
+
+A prompt appears above "Start now"; tap it to tick things off. Times and rules are at the top of `backend/app/schedule.py`.
 
 ## How ranking works
 

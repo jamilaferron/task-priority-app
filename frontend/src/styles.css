@@ -27,20 +27,13 @@
   }
 }
 
-* {
-  box-sizing: border-box;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
   background: var(--bg);
   color: var(--text);
-  font-family:
-    system-ui,
-    -apple-system,
-    "Segoe UI",
-    Roboto,
-    sans-serif;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
   font-size: 18px;
   line-height: 1.4;
 }
@@ -57,9 +50,7 @@ body {
   margin: 0 0 8px;
 }
 
-section {
-  margin-top: 28px;
-}
+section { margin-top: 28px; }
 
 h2 {
   font-size: 0.9rem;
@@ -69,9 +60,7 @@ h2 {
   margin: 0 0 10px;
 }
 
-.overdue-heading {
-  color: var(--bad);
-}
+.overdue-heading { color: var(--bad); }
 
 .card {
   display: flex;
@@ -85,32 +74,14 @@ h2 {
   margin-bottom: 10px;
 }
 
-.card-main {
-  flex: 1 1 320px;
-  min-width: 0;
-}
-.card-title {
-  margin: 0 0 6px;
-  font-size: 1.15rem;
-  font-weight: 600;
-}
+.card-main { flex: 1 1 320px; min-width: 0; }
+.card-title { margin: 0 0 6px; font-size: 1.15rem; font-weight: 600; }
 
-.card-hero {
-  border: 2px solid var(--accent);
-  padding: 22px 20px;
-}
-.card-hero .card-title {
-  font-size: 1.8rem;
-}
-.card-overdue {
-  border-left: 6px solid var(--bad);
-}
-.card-needs {
-  border-style: dashed;
-}
-.card-whenever {
-  opacity: 0.85;
-}
+.card-hero { border: 2px solid var(--accent); padding: 22px 20px; }
+.card-hero .card-title { font-size: 1.8rem; }
+.card-overdue { border-left: 6px solid var(--bad); }
+.card-needs { border-style: dashed; }
+.card-whenever { opacity: 0.85; }
 
 .card-meta {
   display: flex;
@@ -121,14 +92,9 @@ h2 {
   color: var(--muted);
   font-size: 0.95rem;
 }
-.card-needs .card-meta {
-  display: block;
-}
+.card-needs .card-meta { display: block; }
 
-.late {
-  color: var(--warn);
-  font-weight: 600;
-}
+.late { color: var(--warn); font-weight: 600; }
 
 .pill {
   border: 1px solid var(--border);
@@ -136,19 +102,10 @@ h2 {
   padding: 1px 10px;
   color: var(--text);
 }
-.pill-c4 {
-  border-color: var(--warn);
-  color: var(--warn);
-}
-.pill-c5 {
-  border-color: var(--bad);
-  color: var(--bad);
-}
+.pill-c4 { border-color: var(--warn); color: var(--warn); }
+.pill-c5 { border-color: var(--bad); color: var(--bad); }
 
-.card-actions {
-  display: flex;
-  gap: 8px;
-}
+.card-actions { display: flex; gap: 8px; }
 
 .btn {
   font: inherit;
@@ -160,17 +117,8 @@ h2 {
   color: var(--text);
   cursor: pointer;
 }
-.btn-done {
-  background: var(--good);
-  border-color: var(--good);
-  color: #fff;
-  font-weight: 600;
-}
-.btn-link {
-  border: none;
-  color: var(--accent);
-  padding: 6px 0;
-}
+.btn-done { background: var(--good); border-color: var(--good); color: #fff; font-weight: 600; }
+.btn-link { border: none; color: var(--accent); padding: 6px 0; }
 
 .edit-form {
   flex-basis: 100%;
@@ -180,25 +128,11 @@ h2 {
   border-top: 1px solid var(--border);
   padding-top: 14px;
 }
-.edit-form label {
-  display: grid;
-  gap: 4px;
-  font-size: 0.9rem;
-  color: var(--muted);
-}
-.edit-form label.check {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  color: var(--text);
-}
-.edit-form .card-actions,
-.edit-form .error {
-  grid-column: 1 / -1;
-}
+.edit-form label { display: grid; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+.edit-form label.check { display: flex; align-items: center; gap: 8px; color: var(--text); }
+.edit-form .card-actions, .edit-form .error { grid-column: 1 / -1; }
 
-input,
-select {
+input, select {
   font: inherit;
   padding: 8px 10px;
   border-radius: 8px;
@@ -206,20 +140,12 @@ select {
   background: var(--bg);
   color: var(--text);
 }
-input[type="checkbox"] {
-  width: 22px;
-  height: 22px;
-}
+input[type="checkbox"] { width: 22px; height: 22px; }
 
-.muted {
-  color: var(--muted);
-}
-.error {
-  color: var(--bad);
-  margin: 0;
-}
+.muted { color: var(--muted); }
+.error { color: var(--bad); margin: 0; }
 
-/* Main view: one big task, then the buttons. */
+/* Main view: everything vertically centred, small pill buttons on the right. */
 .home {
   min-height: 100vh;
   min-height: 100dvh;
@@ -229,16 +155,10 @@ input[type="checkbox"] {
   padding-top: 16px;
   padding-bottom: 16px;
 }
-.home section {
-  margin-top: 20px;
-}
-.home .card-hero {
-  margin-top: 4px;
-}
-.hero-empty {
-  font-size: 1.3rem;
-  padding: 24px 0;
-}
+.home section { margin-top: 20px; }
+.home .card-hero { margin-top: 4px; }
+.hero-empty { font-size: 1.3rem; padding: 24px 0; }
+
 .nav-buttons {
   display: flex;
   flex-wrap: wrap;
@@ -255,9 +175,7 @@ input[type="checkbox"] {
   font-size: 0.95rem;
   background: var(--surface);
 }
-.btn-needs {
-  border-style: dashed;
-}
+.btn-needs { border-style: dashed; }
 
 /* List views (Up next, Whenever pile, Needs details). */
 .list-header {
@@ -266,16 +184,103 @@ input[type="checkbox"] {
   gap: 16px;
   margin-bottom: 20px;
 }
-.list-header h1 {
-  margin: 0;
-  font-size: 1.6rem;
-}
+.list-header h1 { margin: 0; font-size: 1.6rem; }
 
-.key-form form {
+a.btn { text-decoration: none; display: inline-flex; align-items: center; }
+.small { font-size: 0.85rem; margin: 4px 0 0; }
+
+/* ---- Phase 2: checklist prompt and today's agenda on the main view ---- */
+.prompt {
+  font: inherit;
   display: flex;
-  gap: 8px;
   flex-wrap: wrap;
+  gap: 4px 16px;
+  align-items: center;
+  width: 100%;
+  text-align: left;
+  margin-top: 16px;
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 2px solid var(--warn);
+  background: var(--surface);
+  color: var(--text);
+  cursor: pointer;
 }
-.key-form input {
-  flex: 1 1 240px;
+.prompt-action { margin-left: auto; color: var(--warn); font-weight: 600; }
+
+.agenda { list-style: none; margin: 0; padding: 0; }
+.agenda li { display: flex; gap: 12px; padding: 4px 0; }
+.agenda-time { min-width: 4.5em; color: var(--muted); font-variant-numeric: tabular-nums; }
+
+/* ---- Checklists view ---- */
+.checklist {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 8px 16px;
+  margin-bottom: 10px;
 }
+.checklist-title { margin: 8px 0 4px; font-size: 1.05rem; }
+.tick-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 10px 0; /* big tap target */
+  border-top: 1px solid var(--border);
+  cursor: pointer;
+}
+.checklist .tick-row:first-child, .checklist-title + .tick-row { border-top: none; }
+.tick-row input { width: 26px; height: 26px; flex: none; }
+.tick-row.ticked span { color: var(--muted); text-decoration: line-through; }
+.tick-row small { display: block; text-decoration: none; }
+
+/* ---- Manage page (phone) ---- */
+.tabs { display: flex; gap: 6px; margin-bottom: 16px; }
+.tab {
+  font: inherit;
+  flex: 1;
+  padding: 10px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.tab.active { background: var(--accent); border-color: var(--accent); color: #fff; font-weight: 600; }
+
+.add-btn { width: 100%; margin-bottom: 12px; }
+.manage-card.inactive { opacity: 0.6; }
+
+.manage-form, .period-form { display: grid; gap: 12px; }
+.manage-form label, .period-form label { display: grid; gap: 4px; font-size: 0.9rem; color: var(--muted); }
+.manage-form label.check { display: flex; align-items: center; gap: 8px; color: var(--text); font-size: 1rem; }
+.manage-form h2 { font-size: 1.1rem; text-transform: none; letter-spacing: 0; color: var(--text); }
+fieldset { border: 1px solid var(--border); border-radius: 10px; padding: 8px 12px 12px; margin: 0; display: grid; gap: 8px; }
+legend { color: var(--muted); font-size: 0.9rem; padding: 0 4px; }
+textarea { font: inherit; padding: 8px 10px; border-radius: 8px; border: 1px solid var(--border); background: var(--bg); color: var(--text); }
+
+.chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.chip {
+  font: inherit;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: transparent;
+  color: var(--text);
+  cursor: pointer;
+}
+.chip.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+
+.inline-form { display: flex; gap: 8px; margin: 12px 0; }
+.inline-form input { flex: 1; min-width: 0; }
+
+.calendar-card { display: block; }
+.calendar-head { display: flex; justify-content: space-between; align-items: center; gap: 12px; }
+.periods { list-style: none; padding: 0; margin: 8px 0; }
+.periods li { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 6px 0; border-top: 1px solid var(--border); }
+.btn-small { padding: 4px 10px; font-size: 0.9rem; }
+.period-form { border-top: 1px solid var(--border); padding-top: 12px; grid-template-columns: 1fr 1fr; }
+.period-form > input, .period-form > .error, .period-form > button { grid-column: 1 / -1; }
+
+.key-form form { display: flex; gap: 8px; flex-wrap: wrap; }
+.key-form input { flex: 1 1 240px; }
